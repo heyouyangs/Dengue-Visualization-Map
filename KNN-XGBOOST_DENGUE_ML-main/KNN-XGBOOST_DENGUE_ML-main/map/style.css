@@ -1,0 +1,173 @@
+    /* Ensure map and page take full height */
+    html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Map should fill the screen */
+    #map {
+        height: 100vh;  /* Use 100% of the viewport height */
+        width: 100%;    /* Full width */
+    }
+
+    /* Positioning for the Year and Month dropdown */
+    #year-selector {
+        position: absolute;
+        top: 10px;  /* Adjust the distance from the top of the page */
+        left: 10px; /* Adjust the distance from the left edge */
+        background: rgba(255, 255, 255, 0.7);  /* Semi-transparent background */
+        padding: 10px;
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);  /* Shadow for visibility */
+        z-index: 1000;  /* Ensure it stays on top of the map */
+        width: 220px; /* Set a specific width for the dropdown container */
+    }
+
+    /* Style for the dropdown elements */
+    #year-selector label {
+        display: block;
+        font-weight: bold;
+        margin-top: 5px;
+    }
+
+    #year-selector select {
+        width: 100%;
+        margin-bottom: 5px;
+        padding: 4px;
+    }
+
+            /* Sidebar styles */
+            #sidebar {
+                position: absolute;
+                top: 42%;
+                right: 10px;
+                background: rgba(255, 255, 255, 0.7);
+                padding: 20px;
+                border-radius: 8px;
+                z-index: 1000;
+                width: 250px;   
+                text-align: center; /* Center text inside the h3 */
+            }
+    
+            #sidebar h3 {
+                margin-top: 0;
+                color: rgb(186, 11, 11);
+            }
+    
+            /* Sidebar styles */
+            #sidebar10 {
+                position: absolute;
+                top: 59%;
+                right: 10px;
+                background-color: rgba(191, 184, 36, 0.398);
+                padding: 20px;
+                border-radius: 8px;
+                width: 250px;
+                z-index: 1000;
+                text-align: center; /* Center text inside the h3 */
+            }
+
+            
+    
+            #sidebar h2 {
+                margin-top: 0;
+            }
+
+
+            #graph-container {
+                position: absolute;
+                top: 30px;
+                right: 10px;
+                width: 90%;
+                max-width: 400px;
+                height: auto;
+                background: white;
+                border-radius: 10px;
+                padding: 10px;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+                z-index: 999;
+                display: none;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+            }
+            
+
+            #info-modal {
+                display: none; /* This ensures it's hidden on page load */
+                position: fixed;
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 100%;
+                justify-content: center;
+                align-items: center;
+                background: rgba(0, 0, 0, 0.5); /* optional styling */
+                z-index: 9999;
+            }
+
+            #info-modal > div {
+                width: 90%;
+                max-width: 600px;
+                max-height: 90vh;
+                overflow-y: auto;
+            }
+            
+            @media (max-width: 768px) {
+                #year-selector, #sidebar, #sidebar10, #graph-container {
+                    width: 90%;
+                    left: 5%;
+                    right: auto;
+                    top: auto;
+                    bottom: 10px;
+                }
+            
+                #graph-container {
+                    top: auto;
+                    bottom: 80px;
+                }
+            
+                #map {
+                    height: 100vh; /* Still take full screen */
+                }
+            }
+            
+
+
+            .pulse-circle {
+                width: 40px;            /* Increased from 20px to 40px */
+                height: 40px;
+                background: rgba(255, 0, 0, 0.4);
+                border-radius: 50%;
+                position: relative;
+                animation: pulse 4s infinite;
+            }
+            
+            .pulse-circle.high {
+                background: rgba(255, 0, 0, 0.4);
+            }
+            .pulse-circle.medium {
+                background: rgba(255, 166, 0, 0.582);
+            }
+            .pulse-circle.low {
+                background: rgba(0, 128, 0, 0.4);
+            }
+            
+            @keyframes pulse {
+                0% {
+                    transform: scale(2);
+                    opacity: 1;
+                }
+                50% {
+                    transform: scale(4);   /* Bigger pulse */
+                    opacity: 0.4;
+                }
+                100% {
+                    transform: scale(2);
+                    opacity: 1;     
+                }
+            }
+            

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Iligan City Risk Map</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <!-- Your CSS -->
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+    <!-- Year and Month Dropdown Overlay -->
+    <div id="year-selector">
+        <label for="year">Select Year:</label>
+        <select id="year">
+            <option value="2020">2020</option>
+            <option value="2021">2021</option>
+            <option value="2022">2022</option>
+            <option value="2023">2023</option>
+        </select>
+
+        <label for="month">Select Month:</label>
+        <select id="month">
+            <option value="1">January</option>
+            <option value="2">February</option>
+            <option value="3">March</option>
+            <option value="4">April</option>
+            <option value="5">May</option>
+            <option value="6">June</option>
+            <option value="7">July</option>
+            <option value="8">August</option>
+            <option value="9">September</option>
+            <option value="10">October</option>
+            <option value="11">November</option>
+            <option value="12">December</option>
+        </select>
+
+        <label for="risk">Select Risk Level:</label>
+        <select id="risk">
+            <option value="All">All</option>
+            <option value="High">High</option>
+            <option value="Medium">Medium</option>
+            <option value="Low">Low</option>
+        </select>
+
+
+    </div>
+
+    <!-- Sidebar Summary -->
+<div id="sidebar">
+    <div>
+        <h3>Risk Summary</h3>
+        <p>High Risk Areas: <span id="high-risk-count">0</span></p>
+        <p>Affected People: <span id="affected-people-count">0</span></p>
+    </div>
+
+</div>
+
+<div id="sidebar10">
+    <div id="top-barangays"></div> <!-- New section for top 10 barangays -->
+</div>
+
+<!-- Graph Container -->
+<div id="graph-container">
+    <h3>Dengue: Real vs Predicted</h3>
+    <canvas id="dengueChart" width="380" height="230"></canvas>
+    <button id="toggle-graph" style="margin-top: 10px;">See More</button>
+</div>
+<div id="info-modal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.5); justify-content:center; align-items:center; z-index:1001;">
+    <div style="background:white; padding:20px; border-radius:8px; max-width:600px; text-align:left; overflow:auto;">
+       <div style="text-align: center;"> 
+        <h3>Dengue Prediction Details</h3>
+        <p id="modal-description" style="text-align:center;">
+            Overview of the information for <span id="selected-month">[Month]</span> <span id="selected-year">[Year]</span>.
+        </p>
+        
+        </div>
+
+        <div id="overall-info" style="display: flex; flex-wrap: wrap; gap: 20px;">
+            <div style="flex: 1 1 150px; text-align:center; font-size: 18px; border: 1px solid #ccc; padding: 10px; border-radius: 5px;">
+                <div style="font-size: 30px; font-weight: bold;" id="total-predicted"></div>
+                <div>Total Predicted</div>
+            </div>
+            <div style="flex: 1 1 150px; text-align:center; font-size: 18px; border: 1px solid #ccc; padding: 10px; border-radius: 5px;">
+                <div style="font-size: 30px; font-weight: bold;" id="total-actual"></div>
+                <div>Total Actual</div>
+            </div>
+            <div style="flex: 1 1 150px; text-align:center; font-size: 18px; border: 1px solid #ccc; padding: 10px; border-radius: 5px;">
+                <div style="font-size: 30px; font-weight: bold;" id="average-cases"></div>
+                <div>Average Cases per Barangay</div>
+            </div>
+            <div style="flex: 1 1 150px; text-align:center; font-size: 18px; border: 1px solid #ccc; padding: 10px; border-radius: 5px;">
+                <div style="font-size: 30px; font-weight: bold;" id="modal-high-risk-count"></div>
+                <div>High Risk Areas</div>
+            </div>
+            <div style="flex: 1 1 150px; text-align:center; font-size: 18px; border: 1px solid #ccc; padding: 10px; border-radius: 5px;">
+                <div style="font-size: 30px; font-weight: bold;" id="medium-risk-count"></div>
+                <div>Medium Risk Areas</div>
+            </div>
+            <div style="flex: 1 1 150px; text-align:center; font-size: 18px; border: 1px solid #ccc; padding: 10px; border-radius: 5px;">
+                <div style="font-size: 30px; font-weight: bold;" id="low-risk-count"></div>
+                <div>Low Risk Areas</div>
+            </div>
+        </div>
+    
+        
+        <!-- Centered Close Button -->
+        <div style="text-align: center; margin-top: 20px;">
+            <button onclick="document.getElementById('info-modal').style.display='none';">Close</button>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+    
+    <!-- Map element -->
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet.heat/dist/leaflet-heat.js"></script>
+    <script src="https://unpkg.com/topojson-client@3"></script>
+    <!-- Include leaflet-heat.js plugin -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-heat/0.2.0/leaflet-heat.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+
+    <script src="script.js"></script>
+</body>
+</html>
